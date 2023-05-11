@@ -6,6 +6,7 @@ const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
 
 import { Header } from "../components/Header";
 import { HeabitDay, DAY_SIZE } from "../components/HabitDay";
+import { useNavigation } from "@react-navigation/native";
 const datesFormYearStart = generateRangeDatesFromYearStart();
 
 const minimumSummanyDatesSizes = 18 * 5
@@ -13,6 +14,8 @@ const minimumSummanyDatesSizes = 18 * 5
 const amountOfDaysFill = minimumSummanyDatesSizes - datesFormYearStart.length
 
 export function Home() {
+
+    const { navigate } = useNavigation()
     return (
         <View className='flex-1 bg-background px-8 pt-16'>
             <Header />
@@ -30,15 +33,16 @@ export function Home() {
                 ))}
             </View>
 
-            <ScrollView 
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom: 100 }}
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 100 }}
             >
 
                 <View className="flex-row flex-wrap">
                     {datesFormYearStart.map(date => (
                         <HeabitDay
                             key={date.toDateString()}
+                            onPress={() => navigate('habit', {date: date.toDateString()})}
                         />
                     ))}
 
