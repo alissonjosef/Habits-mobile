@@ -33,7 +33,7 @@ export function Habit() {
                     {dayAndMonth}
                 </Text>
 
-                <ProgressBar progress={100}/>
+                <ProgressBar progress={10}/>
 
                 <View className='mt-6'>
                     <Checkbox 
