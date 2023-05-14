@@ -7,9 +7,9 @@ const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 import { Header } from "../components/Header";
 import { Loanding } from "../components/Loanding";
 import { HeabitDay, DAY_SIZE } from "../components/HabitDay";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { api } from "../lib/axios";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import dayjs from "dayjs";
 const datesFormYearStart = generateRangeDatesFromYearStart();
 
@@ -43,9 +43,11 @@ export function Home() {
     }
   }
 
-  useEffect(() => {
-    featDate();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      featDate();
+    }, [])
+  );
 
   if (loanding) {
     return <Loanding />;
